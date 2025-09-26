@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zip Proxy ⚡</title>
+  <meta charset="UTF-8" />
+  <script src="/uv/uv.bundle.js"></script>
+  <script src="/uv/uv.config.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/uv/sw.js");
+      });
+    }
+  </script>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 50px; }
+    input { width: 300px; padding: 10px; }
+    button { padding: 10px 20px; margin-left: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Zip Proxy ⚡</h1>
+  <p>Enter a URL to zip through filters:</p>
+  <input id="url" placeholder="https://example.com" />
+  <button onclick="go()">Go</button>
+
+  <script>
+    function go() {
+      const input = document.getElementById("url").value;
+      location.href = __uv$config.prefix + __uv$config.encodeUrl(input);
+    }
+  </script>
+</body>
+</html>
